@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="item_movie_height">248dp</dimen>
+</resources>

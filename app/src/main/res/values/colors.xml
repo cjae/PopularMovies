@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#363F44</color>
+    <color name="colorPrimaryDark">#ff1a1f23</color>
+    <color name="colorAccent">#E91C62</color>
+    <color name="window_background">#363F44</color>
+
+    <color name="movie_placeholder">#ff4e5d64</color>
+</resources>
