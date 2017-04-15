@@ -8,16 +8,20 @@
     tools:context="com.cjae.popularmovies.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/movies_rv"
+    <GridView
+        android:id="@+id/movie_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"/>
+        android:columnWidth="150dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="2dp"
+        android:horizontalSpacing="2dp"
+        android:stretchMode="columnWidth"/>
 
     <ProgressBar
         android:id="@+id/pb_loading_indicator"
         android:layout_height="42dp"
         android:layout_width="42dp"
         android:layout_gravity="center"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 </FrameLayout>

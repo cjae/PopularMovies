@@ -5,5 +5,16 @@
     <color name="colorAccent">#E91C62</color>
     <color name="window_background">#363F44</color>
 
+    <color name="app_white">#fff</color>
+    <color name="app_green">#298336</color>
+    <color name="app_blue">#14B7F7</color>
+    <color name="bg_color">#192028</color>
+    <color name="card_color">#2b363d</color>
+
+    <color name="app_grey">#424242</color>
+    <color name="app_white_smoke">#f5f5f5</color>
+    <color name="app_black">#000</color>
+    <color name="app_dark_blue">#2B363D</color>
+
     <color name="movie_placeholder">#ff4e5d64</color>
 </resources>

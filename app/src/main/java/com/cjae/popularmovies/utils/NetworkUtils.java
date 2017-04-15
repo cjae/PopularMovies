@@ -14,23 +14,23 @@ import java.util.Scanner;
  */
 
 public class NetworkUtils {
-    private static final String BASE_URL = "http://api.themoviedb.org/3/";
+    public static final String BASE_IMAGE_URL = "http://image.tmdb.org/t/p/w300_and_h450_bestv2";
+
+    private static final String BASE_URL = "http://api.themoviedb.org/3/movie/popular";
 
     private static final String PARAM_API_KEY_QUERY = "api_key";
-    private static final String API_KEY = "87a901020f496977f9d6d508c5d186ec";
+    private static final String API_KEY = "";
 
     private final static String PARAM_SORT = "sort_by";
 
     /**
      * Builds the URL used to query GitHub.
      *
-     * @param sortQuery The keyword that will be queried for.
      * @return The URL to use to query the themoviedb.
      */
-    public static URL buildUrl(String sortQuery) {
+    public static URL buildUrl() {
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
                 .appendQueryParameter(PARAM_API_KEY_QUERY, API_KEY)
-                .appendQueryParameter(PARAM_SORT, sortQuery)
                 .build();
 
         URL url = null;

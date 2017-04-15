@@ -6,36 +6,46 @@ import android.os.Parcelable;
 
 public class Movie implements Parcelable {
 
-    private String _adult;
-    private String _backdrop_path;
-    private String _id;
+    private int _id;
     private String _original_title;
-    private String _release_date;
     private String _poster_path;
-    private String _popularity;
-    private String _title;
-    private String _vote_average;
-    private String _vote_count;
     private String _overview;
-    private boolean _movieReady;
+    private double _vote_average;
+    private String _release_date;
 
-    public Movie(String _adult, String _backdrop_path, String _id, String _original_title,
-                 String _release_date, String _poster_path, String _popularity, String _title,
-                 String _vote_average, String _vote_count, String _overview, boolean _movieReady) {
-        this._adult = _adult;
-        this._backdrop_path = _backdrop_path;
+    public Movie(int _id, String _original_title, String _poster_path, String _overview,
+                 double _vote_average, String _release_date) {
         this._id = _id;
         this._original_title = _original_title;
-        this._release_date = _release_date;
         this._poster_path = _poster_path;
-        this._popularity = _popularity;
-        this._title = _title;
-        this._vote_average = _vote_average;
-        this._vote_count = _vote_count;
         this._overview = _overview;
-        this._movieReady = _movieReady;
+        this._vote_average = _vote_average;
+        this._release_date = _release_date;
     }
 
+    public int get_id() {
+        return _id;
+    }
+
+    public String get_original_title() {
+        return _original_title;
+    }
+
+    public String get_poster_path() {
+        return _poster_path;
+    }
+
+    public String get_overview() {
+        return _overview;
+    }
+
+    public double get_vote_average() {
+        return _vote_average;
+    }
+
+    public String get_release_date() {
+        return _release_date;
+    }
 
     @Override
     public int describeContents() {
@@ -44,54 +54,24 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this._adult);
-        dest.writeString(this._backdrop_path);
-        dest.writeString(this._id);
+        dest.writeInt(this._id);
         dest.writeString(this._original_title);
-        dest.writeString(this._release_date);
         dest.writeString(this._poster_path);
-        dest.writeString(this._popularity);
-        dest.writeString(this._title);
-        dest.writeString(this._vote_average);
-        dest.writeString(this._vote_count);
         dest.writeString(this._overview);
-        dest.writeByte(this._movieReady ? (byte) 1 : (byte) 0);
+        dest.writeDouble(this._vote_average);
+        dest.writeString(this._release_date);
     }
 
     private Movie(Parcel in) {
-        this._adult = in.readString();
-        this._backdrop_path = in.readString();
-        this._id = in.readString();
+        this._id = in.readInt();
         this._original_title = in.readString();
-        this._release_date = in.readString();
         this._poster_path = in.readString();
-        this._popularity = in.readString();
-        this._title = in.readString();
-        this._vote_average = in.readString();
-        this._vote_count = in.readString();
         this._overview = in.readString();
-        this._movieReady = in.readByte() != 0;
+        this._vote_average = in.readDouble();
+        this._release_date = in.readString();
     }
 
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "_adult='" + _adult + '\'' +
-                ", _backdrop_path='" + _backdrop_path + '\'' +
-                ", _id='" + _id + '\'' +
-                ", _original_title='" + _original_title + '\'' +
-                ", _release_date='" + _release_date + '\'' +
-                ", _poster_path='" + _poster_path + '\'' +
-                ", _popularity='" + _popularity + '\'' +
-                ", _title='" + _title + '\'' +
-                ", _vote_average='" + _vote_average + '\'' +
-                ", _vote_count='" + _vote_count + '\'' +
-                ", _overview='" + _overview + '\'' +
-                ", _movieReady=" + _movieReady +
-                '}';
-    }
-
-    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
         @Override
         public Movie createFromParcel(Parcel source) {
             return new Movie(source);
