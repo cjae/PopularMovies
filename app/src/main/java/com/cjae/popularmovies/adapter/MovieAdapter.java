@@ -1,14 +1,13 @@
 package com.cjae.popularmovies.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.cjae.popularmovies.R;
 import com.cjae.popularmovies.model.Movie;
@@ -17,7 +16,6 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.cjae.popularmovies.utils.NetworkUtils.BASE_IMAGE_URL;
 
@@ -51,19 +49,32 @@ public class MovieAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
+    public View getView(int i, View convertView, final ViewGroup viewGroup) {
+        final MyViewHolder viewHolder;
+
         final Movie movie = movieArrayList.get(i);
 
         if(convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.movie_item, viewGroup, false);
+
+            viewHolder = new MyViewHolder();
+            viewHolder.postalView = (ImageView) convertView.findViewById(R.id.movie_postal);
+            viewHolder.movieTitle = (TextView) convertView.findViewById(R.id.item_movie_title);
+
+            // store the holder with the view.
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (MyViewHolder) convertView.getTag();
         }
-        final ImageView postalView = (ImageView) convertView.findViewById(R.id.movie_postal);
 
         assert movie != null;
+
+        viewHolder.movieTitle.setText(movie.getOriginal_title());
+
         Picasso.with(mContext)
-                .load(BASE_IMAGE_URL + movie.get_poster_path())
+                .load(BASE_IMAGE_URL + movie.getPoster_path())
                 .networkPolicy(NetworkPolicy.OFFLINE)
-                .into(postalView, new Callback() {
+                .into(viewHolder.postalView, new Callback() {
                     @Override
                     public void onSuccess() {
 
@@ -73,11 +84,10 @@ public class MovieAdapter extends BaseAdapter {
                     public void onError() {
                         //Try again online if cache failed
                         Picasso.with(mContext)
-                                .load(BASE_IMAGE_URL + movie.get_poster_path())
-                                .into(postalView);
+                                .load(BASE_IMAGE_URL + movie.getPoster_path())
+                                .into(viewHolder.postalView);
                     }
                 });
-
 
         return convertView;
     }
@@ -87,7 +97,8 @@ public class MovieAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-//    public Movie getMovieData(int position) {
-//        return movieArrayList.get(position);
-//    }
+    private static class MyViewHolder {
+        ImageView postalView;
+        TextView movieTitle;
+    }
 }

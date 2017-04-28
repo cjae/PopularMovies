@@ -4,48 +4,81 @@ package com.cjae.popularmovies.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 public class Movie implements Parcelable {
 
-    private int _id;
-    private String _original_title;
-    private String _poster_path;
-    private String _overview;
-    private double _vote_average;
-    private String _release_date;
+    private String poster_path;
+    private Boolean adult;
+    private String overview;
+    private String release_date;
+    private ArrayList<Integer> genre_ids;
+    private Integer id;
+    private String original_title;
+    private String original_language;
+    private String title;
+    private String backdrop_path;
+    private Double popularity;
+    private Integer voteCount;
+    private Boolean video;
+    private Double vote_average;
 
-    public Movie(int _id, String _original_title, String _poster_path, String _overview,
-                 double _vote_average, String _release_date) {
-        this._id = _id;
-        this._original_title = _original_title;
-        this._poster_path = _poster_path;
-        this._overview = _overview;
-        this._vote_average = _vote_average;
-        this._release_date = _release_date;
+    public String getPoster_path() {
+        return poster_path;
     }
 
-    public int get_id() {
-        return _id;
+    public Boolean getAdult() {
+        return adult;
     }
 
-    public String get_original_title() {
-        return _original_title;
+    public String getOverview() {
+        return overview;
     }
 
-    public String get_poster_path() {
-        return _poster_path;
+    public String getRelease_date() {
+        return release_date;
     }
 
-    public String get_overview() {
-        return _overview;
+    public ArrayList<Integer> getGenre_ids() {
+        return genre_ids;
     }
 
-    public double get_vote_average() {
-        return _vote_average;
+    public Integer getId() {
+        return id;
     }
 
-    public String get_release_date() {
-        return _release_date;
+    public String getOriginal_title() {
+        return original_title;
     }
+
+    public String getOriginal_language() {
+        return original_language;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getBackdrop_path() {
+        return backdrop_path;
+    }
+
+    public Double getPopularity() {
+        return popularity;
+    }
+
+    public Integer getVoteCount() {
+        return voteCount;
+    }
+
+    public Boolean getVideo() {
+        return video;
+    }
+
+    public Double getVote_average() {
+        return vote_average;
+    }
+
 
     @Override
     public int describeContents() {
@@ -54,24 +87,44 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this._id);
-        dest.writeString(this._original_title);
-        dest.writeString(this._poster_path);
-        dest.writeString(this._overview);
-        dest.writeDouble(this._vote_average);
-        dest.writeString(this._release_date);
+        dest.writeString(this.poster_path);
+        dest.writeValue(this.adult);
+        dest.writeString(this.overview);
+        dest.writeString(this.release_date);
+        dest.writeList(this.genre_ids);
+        dest.writeValue(this.id);
+        dest.writeString(this.original_title);
+        dest.writeString(this.original_language);
+        dest.writeString(this.title);
+        dest.writeString(this.backdrop_path);
+        dest.writeValue(this.popularity);
+        dest.writeValue(this.voteCount);
+        dest.writeValue(this.video);
+        dest.writeValue(this.vote_average);
+    }
+
+    public Movie() {
     }
 
     private Movie(Parcel in) {
-        this._id = in.readInt();
-        this._original_title = in.readString();
-        this._poster_path = in.readString();
-        this._overview = in.readString();
-        this._vote_average = in.readDouble();
-        this._release_date = in.readString();
+        this.poster_path = in.readString();
+        this.adult = (Boolean) in.readValue(Boolean.class.getClassLoader());
+        this.overview = in.readString();
+        this.release_date = in.readString();
+        this.genre_ids = new ArrayList<Integer>();
+        in.readList(this.genre_ids, Integer.class.getClassLoader());
+        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.original_title = in.readString();
+        this.original_language = in.readString();
+        this.title = in.readString();
+        this.backdrop_path = in.readString();
+        this.popularity = (Double) in.readValue(Double.class.getClassLoader());
+        this.voteCount = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.video = (Boolean) in.readValue(Boolean.class.getClassLoader());
+        this.vote_average = (Double) in.readValue(Double.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
         public Movie createFromParcel(Parcel source) {
             return new Movie(source);

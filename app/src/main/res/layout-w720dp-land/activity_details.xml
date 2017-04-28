@@ -29,19 +29,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/image_placeholder"
                     android:contentDescription="@string/app_name"/>
 
-                <TextView
-                    android:id="@+id/activity_detail_title"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="bottom"
+                    android:background="@color/text_bg"/>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:textSize="23sp"
-                    android:padding="20dp"
-                    android:textColor="@color/app_white"
-                    android:background="@color/text_bg"
-                    android:maxLines="2" />
+                    android:layout_gravity="bottom|start">
+
+                    <ImageView
+                        android:id="@+id/item_movie_postal"
+                        android:layout_width="150dp"
+                        android:layout_height="200dp"
+                        android:layout_margin="20dp"
+                        android:scaleType="centerCrop"
+                        android:background="@color/movie_placeholder"
+                        android:contentDescription="@string/app_name"/>
+
+                    <TextView
+                        android:id="@+id/activity_detail_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="20dp"
+                        android:textSize="25sp"
+                        android:textColor="#FFF"
+                        android:maxLines="2" />
+                </LinearLayout>
             </FrameLayout>
 
             <android.support.v7.widget.Toolbar

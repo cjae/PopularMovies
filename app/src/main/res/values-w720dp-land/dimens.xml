@@ -1,0 +1,15 @@
+<resources>
+
+    <dimen name="activity_horizontal_margin">32dp</dimen>
+    <dimen name="activity_movies_margins">@dimen/activity_horizontal_margin</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--MainActivity dimens-->
+    <dimen name="insets">5dp</dimen>
+    <dimen name="item_movie_width">250dp</dimen>
+    <dimen name="item_movie_height">350dp</dimen>
+    <dimen name="activity_movies_background_view_height">196dp</dimen>
+
+    <!--Movie Item-->
+    <dimen name="movie_item_title">20sp</dimen>
+</resources>

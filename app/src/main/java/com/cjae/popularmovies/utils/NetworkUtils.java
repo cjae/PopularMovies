@@ -14,58 +14,11 @@ import java.util.Scanner;
  */
 
 public class NetworkUtils {
-    public static final String BASE_IMAGE_URL = "http://image.tmdb.org/t/p/w300_and_h450_bestv2";
+    public static final String BASE_IMAGE_URL = "http://image.tmdb.org/t/p/w185";
+    public static final String BASE_COVER_URL = "http://image.tmdb.org/t/p/w342";
 
-    private static final String BASE_URL = "http://api.themoviedb.org/3/movie/popular";
+    public static final String SORT_POPULAR = "popular";
+    public static final String SORT_TOP_RATED = "top_rated";
 
-    private static final String PARAM_API_KEY_QUERY = "api_key";
-    private static final String API_KEY = "";
-
-    private final static String PARAM_SORT = "sort_by";
-
-    /**
-     * Builds the URL used to query GitHub.
-     *
-     * @return The URL to use to query the themoviedb.
-     */
-    public static URL buildUrl() {
-        Uri builtUri = Uri.parse(BASE_URL).buildUpon()
-                .appendQueryParameter(PARAM_API_KEY_QUERY, API_KEY)
-                .build();
-
-        URL url = null;
-        try {
-            url = new URL(builtUri.toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        return url;
-    }
-
-    /**
-     * This method returns the entire result from the HTTP response.
-     *
-     * @param url The URL to fetch the HTTP response from.
-     * @return The contents of the HTTP response.
-     * @throws IOException Related to network and stream reading
-     */
-    public static String getResponseFromHttpUrl(URL url) throws IOException {
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        try {
-            InputStream in = urlConnection.getInputStream();
-
-            Scanner scanner = new Scanner(in);
-            scanner.useDelimiter("\\A");
-
-            boolean hasInput = scanner.hasNext();
-            if (hasInput) {
-                return scanner.next();
-            } else {
-                return null;
-            }
-        } finally {
-            urlConnection.disconnect();
-        }
-    }
+    public static final String API_KEY = "87a901020f496977f9d6d508c5d186ec";
 }

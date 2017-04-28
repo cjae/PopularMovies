@@ -1,5 +1,23 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="item_movie_height">248dp</dimen>
+    <dimen name="icon_size">70dp</dimen>
+
+    <dimen name="standard_ten">10dp</dimen>
+    <dimen name="standard_fifteen">10dp</dimen>
+
+    <dimen name="standard_sixteen_sp">16sp</dimen>
+
+    <dimen name="activity_vertical_margin">4dp</dimen>
+
+    <!--MainActivity dimens-->
+    <dimen name="insets">1dp</dimen>
+    <dimen name="item_movie_width">-1dp</dimen>
+    <dimen name="item_movie_height">250dp</dimen>
+
+    <!--DetailActivity dimens-->
+    <dimen name="movie_title">18sp</dimen>
+
+    <!--Movie Item-->
+    <dimen name="movie_item_title">16sp</dimen>
 </resources>

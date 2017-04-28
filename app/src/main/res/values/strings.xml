@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PopularMovies</string>
+    <string name="app_name">Popular Movies</string>
     <string name="action_settings">Settings</string>
 
     <string name="action_sort">Sort</string>
@@ -13,4 +13,13 @@
     <string name="date_format">Released: %1$s</string>
 
     <string name="synopsis_text">Synopsis</string>
+
+    <string name="no_network_text">No network connection</string>
+    <string name="error_text">An error occurred</string>
+    <string name="error_sub_text">Check your network settings or simply</string>
+    <string name="action_retry">RETRY</string>
+
+    <string name="title_activity_favorite">Favorites</string>
+
+    <string name="action_loading">Loading&#8230;</string>
 </resources>
