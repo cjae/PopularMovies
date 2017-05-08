@@ -39,16 +39,16 @@ public class DetailsActivity extends AppCompatActivity implements
 
     @Bind(R.id.synopsis_tv)
     TextView synopsis_tv;
+////
+////    @Bind(R.id.release_date)
+////    TextView release_date;
+////
+////    @Bind(R.id.rating_tv)
+////    TextView rating_tv;
+////
+////    @Bind(R.id.thumbnail)
+////    ImageView thumbnail;
 //
-//    @Bind(R.id.release_date)
-//    TextView release_date;
-//
-//    @Bind(R.id.rating_tv)
-//    TextView rating_tv;
-//
-//    @Bind(R.id.thumbnail)
-//    ImageView thumbnail;
-
     @Bind(R.id.fab)
     FloatingActionButton mFabButton;
 

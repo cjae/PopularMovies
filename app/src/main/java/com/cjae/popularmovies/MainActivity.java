@@ -44,6 +44,20 @@ public class MainActivity extends AppCompatActivity implements
     private static final String LIFECYCLE_MOVIE_CALLBACKS_KEY = "movieList";
     private static final String LIFECYCLE_PAGE_NO_KEY = "page_no";
 
+    private MovieRecyclerAdapter movieRecyclerAdapter;
+
+    private Context mContext;
+
+    Snackbar mSnackbar;
+
+    private ArrayList<Movie> mMovieList;
+
+    private boolean refreshLoading;
+
+    private boolean loadingMore;
+
+    int page_no;
+
     @Bind(R.id.parent_coordinator)
     CoordinatorLayout parent_coordinator;
 
@@ -55,20 +69,6 @@ public class MainActivity extends AppCompatActivity implements
 
     @Bind(R.id.no_network_error)
     View mNoNetworkView;
-
-    private MovieRecyclerAdapter movieRecyclerAdapter;
-
-    private Context mContext;
-
-    Snackbar snackbar;
-
-    private ArrayList<Movie> mMovieList;
-
-    private boolean refreshLoading;
-
-    private boolean loadingMore;
-
-    int page_no;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements
     private void doRefreshData() {
         if(CommonUtils.isNetworkAvailable(this))
             if(!refreshLoading)
-                doGetMoviesFromServer();
+                doSetSortType();
             else
                 Toast.makeText(this, getString(R.string.no_network_text), Toast.LENGTH_SHORT).show();
     }
@@ -155,24 +155,34 @@ public class MainActivity extends AppCompatActivity implements
     // Initial Load Data from server
     private void loadMoviesData() {
         if(CommonUtils.isNetworkAvailable(this))
-            doGetMoviesFromServer();
+            doSetSortType();
         else
             showNetworkErrorView();
     }
 
-    private void doGetMoviesFromServer() {
+    private void doSetSortType() {
         showProgressView();
         setRefreshLoading(true);
-        page_no = 1;
 
         int sortType = SessionManager.getSortType(mContext);
         String mSortString;
 
         if(sortType == 0) {
             mSortString = NetworkUtils.SORT_POPULAR;
-        } else {
+            doChangeToolbarTitle(getString(R.string.app_name));
+            doGetMoviesFromServer(mSortString);
+        } else if(sortType == 1) {
             mSortString = NetworkUtils.SORT_TOP_RATED;
+            doChangeToolbarTitle(getString(R.string.app_name_top_rated));
+            doGetMoviesFromServer(mSortString);
+        } else {
+            doChangeToolbarTitle(getString(R.string.app_name_favorites));
+            doGetMoviesFromLocal();
         }
+    }
+
+    private void doGetMoviesFromServer(String mSortString) {
+        page_no = 1;
 
         APIClient apiService = ServiceGenerator.getClient().create(APIClient.class);
         Call<MoviesWrapper> call = apiService.getMovies(mSortString, NetworkUtils.API_KEY, String.valueOf(page_no));
@@ -198,6 +208,11 @@ public class MainActivity extends AppCompatActivity implements
             mMovieList = results;
             movieRecyclerAdapter.resetMovies(mMovieList);
         }
+    }
+
+    // Initial Load Data from local database
+    private void doGetMoviesFromLocal() {
+
     }
 
     // Load more data from server
@@ -234,13 +249,13 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void showLoadingSnackbar() {
-        snackbar = Snackbar
+        mSnackbar = Snackbar
                 .make(parent_coordinator, getString(R.string.action_loading), Snackbar.LENGTH_INDEFINITE);
-        snackbar.show();
+        mSnackbar.show();
     }
 
     private void dismissSnackbar() {
-        snackbar.dismiss();
+        mSnackbar.dismiss();
     }
 
     private void doUpdateMovieList(ArrayList<Movie> results) {
@@ -266,12 +281,37 @@ public class MainActivity extends AppCompatActivity implements
         loadingMore = value;
     }
 
-    @OnClick(R.id.retry_btn) void onClickRetryButton(){
-        loadMoviesData();
+    private void doSortDialog() {
+        //Create sequence of items
+        final String[] sortSequence = new String[]{getString(R.string.sort_popular),
+                getString(R.string.sort_top_rated), getString(R.string.sort_favorite)};
+        final int sortId = SessionManager.getSortType(mContext);
+
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setTitle(getString(R.string.sort_by));
+        dialogBuilder.setSingleChoiceItems(sortSequence, sortId, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(sortId == i) {
+                    dialogInterface.dismiss();
+                } else {
+                    SessionManager.setSortType(mContext, i);
+                    loadMoviesData();
+                    dialogInterface.dismiss();
+                }
+            }
+        });
+
+        AlertDialog alertDialogObject = dialogBuilder.create();
+        alertDialogObject.show(); //Show the dialog
     }
 
-    @OnClick(R.id.fab) void onClickFavouriteButton() {
-        startActivity(new Intent(this, FavoriteActivity.class));
+    private void doChangeToolbarTitle(String title) {
+        if(getSupportActionBar() != null) getSupportActionBar().setTitle(title);
+    }
+
+    @OnClick(R.id.retry_btn) void onClickRetryButton(){
+        loadMoviesData();
     }
 
     @Override
@@ -300,30 +340,6 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void doSortDialog() {
-        //Create sequence of items
-        final String[] sortSequence = new String[]{"Popular", "Top rated"};
-        final int sortId = SessionManager.getSortType(mContext);
-
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        dialogBuilder.setTitle("Sort by");
-        dialogBuilder.setSingleChoiceItems(sortSequence, sortId, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if(sortId == i) {
-                            dialogInterface.dismiss();
-                        } else {
-                            SessionManager.setSortType(mContext, i);
-                            loadMoviesData();
-                            dialogInterface.dismiss();
-                        }
-                    }
-                });
-
-        AlertDialog alertDialogObject = dialogBuilder.create();
-        alertDialogObject.show(); //Show the dialog
     }
 
     @Override
