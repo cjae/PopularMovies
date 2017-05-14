@@ -15,10 +15,21 @@ import java.util.Scanner;
 
 public class NetworkUtils {
     public static final String BASE_IMAGE_URL = "http://image.tmdb.org/t/p/w185";
-    public static final String BASE_COVER_URL = "http://image.tmdb.org/t/p/w342";
+    public static final String BASE_COVER_URL = "http://image.tmdb.org/t/p/w500";
+    private static final String BASE_YOUTUBE_URI = "https://www.youtube.com";
+    public static final String BASE_YOUTUBE_THUMBNAIL = "https://img.youtube.com/vi/";
 
     public static final String SORT_POPULAR = "popular";
     public static final String SORT_TOP_RATED = "top_rated";
+    public static final String SORT_FAVORITE = "favorite";
 
-    public static final String API_KEY = "87a901020f496977f9d6d508c5d186ec";
+    // Put your API KEY
+    public static final String API_KEY = "";
+
+    public static Uri buildURI(String key) {
+        return Uri.parse(BASE_YOUTUBE_URI).buildUpon()
+                .appendPath("watch")
+                .appendQueryParameter("v", key)
+                .build();
+    }
 }

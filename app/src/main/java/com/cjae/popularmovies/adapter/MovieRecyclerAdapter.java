@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cjae.popularmovies.R;
-import com.cjae.popularmovies.listener.OnLoadMoreListener;
 import com.cjae.popularmovies.listener.RecyclerViewClickListener;
 import com.cjae.popularmovies.model.Movie;
 import com.squareup.picasso.Callback;
@@ -17,7 +16,6 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.cjae.popularmovies.utils.NetworkUtils.BASE_IMAGE_URL;
 

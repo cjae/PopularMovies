@@ -16,16 +16,27 @@
     <string name="sort_top_rated">Top rated</string>
     <string name="sort_favorite">Favorites</string>
 
-    <string name="rating_format">Rating: %1$1.1f</string>
-
-    <string name="date_format">Released: %1$s</string>
-
     <string name="synopsis_text">Synopsis</string>
 
     <string name="no_network_text">No network connection</string>
+    <string name="no_content_text">No content available</string>
     <string name="error_text">An error occurred</string>
     <string name="error_sub_text">Check your network settings or simply</string>
     <string name="action_retry">RETRY</string>
 
     <string name="action_loading">Loading more&#8230;</string>
+
+    <string name="action_fav_text">Movie added to favorites</string>
+    <string name="action_added_fav_text">Movie already added to favorites</string>
+    <string name="release_date">Released: %1$s</string>
+    <string name="language">Language: %1$s</string>
+    <string name="rating_text">Rating: %1$s</string>
+    <string name="genre_text">Adventure | Action | Thriller</string>
+    <string name="trailer_text">Trailers</string>
+    <string name="review_text">Reviews</string>
+    <string name="trailer_thumbnail">Trailer thumbnail</string>
+    <string name="play_trailer">Play trailer</string>
+    <string name="account_icon">Account Icon</string>
+    <string name="loading_reviews">Loading reviews...</string>
+    <string name="loading_trailers">Loading trailers...</string>
 </resources>

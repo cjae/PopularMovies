@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/review_item_margin_vertical"
+    android:layout_marginLeft="@dimen/review_item_margin_horizontal"
+    android:layout_marginRight="@dimen/review_item_margin_horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:contentDescription="@string/account_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_account_circle_white_24dp"/>
+
+        <TextView
+            android:id="@+id/review_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/review_item_text_size"
+            android:layout_marginLeft="@dimen/review_five_dp"
+            android:layout_marginRight="@dimen/review_five_dp"
+            android:textColor="@color/body_color"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/review_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/review_two_dp"
+            android:textSize="@dimen/review_item_text_size"
+            android:textColor="@color/body_color" />
+</LinearLayout>

@@ -58,10 +58,11 @@
     <include layout="@layout/content_details" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fav_fab"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_margin="@dimen/fab_margin"
+        app:fabSize="mini"
         android:src="@drawable/ic_favorite_white_24dp"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|right|end" />

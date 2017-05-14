@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_background">
+
+    <View
+        android:id="@+id/movies_background_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_movies_background_view_height"
+        android:background="@color/colorPrimary" />
+
+    <com.cjae.popularmovies.views.AutofitRecyclerView
+        android:id="@+id/fav_movies_recycler"
+        android:layout_width="match_parent"
+        android:columnWidth="@dimen/item_movie_width"
+        android:layout_marginLeft="@dimen/activity_movies_margins"
+        android:layout_marginRight="@dimen/activity_movies_margins"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"  />
+
+    <ProgressBar
+        android:id="@+id/fav_loading_indicator"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/no_content_vw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/app_white_smoke"
+        android:textSize="@dimen/no_content_size"
+        android:text="@string/no_content_text"
+        android:visibility="invisible"/>
+</FrameLayout>

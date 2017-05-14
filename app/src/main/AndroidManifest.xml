@@ -26,6 +26,10 @@
             android:name=".DetailsActivity"
             android:label="@string/title_activity_details"
             android:theme="@style/AppTheme.NoActionBar" />
-    </application>
 
+        <provider
+            android:authorities="com.cjae.popularmovies.data.MoviesContentProvider"
+            android:name="com.cjae.popularmovies.data.generated.MoviesContentProvider"
+            android:exported="false"/>
+    </application>
 </manifest>

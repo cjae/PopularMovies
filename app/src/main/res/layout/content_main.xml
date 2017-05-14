@@ -2,65 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/window_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.cjae.popularmovies.MainActivity"
-    tools:showIn="@layout/activity_main">
-
-    <com.cjae.popularmovies.views.AutofitRecyclerView
-        android:id="@+id/movies_recycler"
-        android:layout_width="match_parent"
-        android:columnWidth="@dimen/item_movie_width"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:layout_height="match_parent"
-        android:clipToPadding="false" />
-
-    <ProgressBar
-        android:id="@+id/pb_loading_indicator"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="invisible" />
-
-    <LinearLayout
-        android:id="@+id/no_network_error"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:visibility="invisible">
-
-        <ImageView
-            android:layout_width="@dimen/icon_size"
-            android:layout_height="@dimen/icon_size"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/sadface"
-            android:tint="@color/app_white"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/app_white"
-            android:layout_marginTop="@dimen/standard_ten"
-            android:textSize="@dimen/standard_sixteen_sp"
-            android:text="@string/error_text"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/app_white"
-            android:textSize="@dimen/standard_sixteen_sp"
-            android:text="@string/error_sub_text"/>
-
-        <Button
-            android:id="@+id/retry_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/action_retry"
-            android:textSize="@dimen/standard_sixteen_sp"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
-    </LinearLayout>
-</FrameLayout>
+    tools:showIn="@layout/activity_main"/>

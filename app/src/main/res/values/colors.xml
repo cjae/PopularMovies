@@ -6,8 +6,13 @@
     <color name="window_background">#ff54646c</color>
 
     <color name="app_white">#fff</color>
+    <color name="app_white_smoke">#f5f5f5</color>
     <color name="bg_color">#363F44</color>
 
     <color name="movie_placeholder">#ff4e5d64</color>
     <color name="text_bg">#AA000000</color>
+
+    <color name="detail_bg">#101818</color>
+    <color name="header_color">#B0C0D0</color>
+    <color name="body_color">#7D8181</color>
 </resources>
